@@ -4,7 +4,7 @@
     </div>
 </template>
 <script>
-    import md5 from 'js-md5'
+    // import md5 from 'js-md5'
     import {
         toRefs,
         onMounted,
@@ -132,7 +132,7 @@
                 // 繪製圖片
                 drawPic()
                 // 返回加密後的圖片驗證碼值
-                context.emit('getCode', md5(defaultData.identifyCode))
+                context.emit('getCode', defaultData.identifyCode)
             }
 
             // 初識函數，生成圖片

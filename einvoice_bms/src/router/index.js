@@ -171,6 +171,30 @@ const routes = [{
       title: '載具(卡片)專區'
     },
     component: () => import('../views/apconsumer/Apconsumer3.vue')
+  },
+  {
+    path: '/apresult/1',
+    name: '載具中獎發票查詢結果',
+    meta: {
+      title: '載具(卡片)專區'
+    },
+    component: () => import('../views/apconsumer/ApResult1.vue')
+  },
+  {
+    path: '/apresult/2',
+    name: '載具消費發票查詢結果',
+    meta: {
+      title: '載具(卡片)專區'
+    },
+    component: () => import('../views/apconsumer/ApResult2.vue')
+  },
+  {
+    path: '/apresult/3',
+    name: '載具中獎通知設定查詢結果',
+    meta: {
+      title: '載具(卡片)專區'
+    },
+    component: () => import('../views/apconsumer/ApResult3.vue')
   }
 
 ]
