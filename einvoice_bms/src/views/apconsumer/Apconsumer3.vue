@@ -240,15 +240,6 @@
             <button class="cbutton" @click="empty()">清除</button>
         </div>
     </div>
-    <div class="sbox">
-        說明事項
-        <br>
-        <div style="margin-left:20px">
-            1.載具歸戶後提供自動對獎服務，透過電子郵件寄送中獎訊息。<br>
-            2.綁定金融帳戶，中獎獎金自動匯款，便捷省時又環保。 <br>
-            3.各期中獎統一發票將於開獎月28日18:00起開放查詢(實際開放時間將因當期發票量提前或延後)，並於開獎次月6日開放至超商多媒體服務機(KIOSK) 列印。
-        </div>
-    </div>
 
 </template>
 
