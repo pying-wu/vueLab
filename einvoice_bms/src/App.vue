@@ -67,15 +67,16 @@
     }
 
     .rbox {
-        margin-bottom: 22px;
-        background-color: linen;
+        margin-top: 18px;
+        background-color: rgba(52,255,141,0.11);
         border: 1px solid transparent;
         border-radius: 4px;
         border-color: #2c3e50;
         margin-left: 25%;
         /*margin-right: 13%;*/
         width: 50%;
-        padding: 2% 1%;
+        padding: 2% 0;
+        padding-left: 10%;
     }
 
     .sbox {

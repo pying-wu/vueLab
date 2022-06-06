@@ -22,7 +22,7 @@
                 <option>一卡通</option>
                 <option>信用卡/簽帳金融卡</option>
                 <option>註銷載具-悠遊卡</option>
-                <option>註銷載具-icash</option>
+                <option>註銷載具-iCash</option>
                 <option>註銷載具-一卡通</option>
                 <option>註銷載具-信用卡/簽帳金融卡</option>
             </select>
@@ -44,7 +44,7 @@
         </div>
         <!--    選擇自然人憑證條碼-->
         <div class="radio" v-if="apoption === '自然人憑證條碼'"><label for="cnaturer1">
-            <input type="radio" name="cnaturer" id="cnaturer1" value="感應卡片" v-model="cnaturer" checked>
+            <input type="radio" name="cnaturer" id="cnaturer1" value="感應卡片" v-model="cnaturer">
             感應卡片
             <small> (需安裝使用晶片式讀卡機，以取得該票卡之卡號)</small>
         </label>
@@ -67,7 +67,7 @@
             <label class="col-sm-3 control-label" style="text-align:right">
                 <span class="redstar">*</span>
                 自然人憑證卡號</label>
-            <input class="rdiv" v-model="naturenum">
+            <input disabled class="rdiv" v-model="naturenum" >
 
         </div>
 
@@ -76,7 +76,7 @@
             <label class="col-sm-3 control-label" style="text-align:right">
                 <span class="redstar">*</span>
                 自然人憑證卡號</label>
-            <input disabled class="rdiv" v-model="naturecard">
+            <input class="rdiv" v-model="naturecard">
 
         </div>
         <div v-if="cnaturer === '輸入自然人憑證卡號和自然人憑證條碼密碼' && apoption === '自然人憑證條碼'">
@@ -88,7 +88,7 @@
         </div>
         <!--    選擇悠遊卡-->
         <div class="radio" v-if="apoption === '悠遊卡'"><label for="easy1">
-            <input type="radio" name="easyew" value="感應卡片" id="easy1" v-model="easyew" checked>
+            <input type="radio" name="easyew" value="感應卡片" id="easy1" v-model="easyew">
             感應卡片
             <small> 讀卡元件僅能在Microsoft Internet Explorer上執行</small>
         </label>
@@ -122,7 +122,7 @@
         <!--    選擇icash  -->
         <div class="radio" v-if="apoption === 'icash'">
             <label for="icash">
-                <input type="radio" name="icash" id="icash" v-model="icash" checked>
+                <input type="radio" value="感應卡片" name="icash" id="icash" v-model="icash" checked>
                 感應卡片
                 <small> 讀卡元件僅能在Microsoft Internet Explorer上執行</small>
             </label>
@@ -135,7 +135,7 @@
         </div>
         <!--    選擇一卡通-->
         <div class="radio" v-if="apoption === '一卡通'"><label for="ipass1">
-            <input type="radio" name="ipass" value="感應卡片" id="ipass1" v-model="ipass" checked>
+            <input type="radio" name="ipass" value="感應卡片" id="ipass1" v-model="ipass">
             感應卡片
             <small> 讀卡元件僅能在Microsoft Internet Explorer上執行</small>
         </label>
@@ -154,13 +154,13 @@
             <input disabled class="rdiv" v-model="ipassnum">
         </div>
         <!--    選擇一卡通 >> 輸入卡片內碼及驗證碼-->
-        <div v-if="ipass === '輸入卡片內碼及驗證碼' && apoption === '一卡通'">
+        <div v-if="ipass === '輸入卡片內碼和卡片驗證碼' && apoption === '一卡通'">
             <label class="col-sm-3 control-label" style="text-align:right">
                 <span class="redstar">*</span>
                 卡片內碼</label>
             <input class="rdiv" v-model="ipasscard">
         </div>
-        <div v-if="ipass === '輸入卡片內碼及驗證碼' && apoption === '一卡通'">
+        <div v-if="ipass === '輸入卡片內碼和卡片驗證碼' && apoption === '一卡通'">
             <label class="col-sm-3 control-label" style="text-align:right">
                 <span class="redstar">*</span>
                 卡片驗證碼</label>
@@ -203,11 +203,11 @@
             <a class="btn btn-primary etooltip" target="_blank" title="信用卡存發票好康專區" copied="信用卡存發票好康專區"
                href="https://www.einvoice.nat.gov.tw/ein_upload/html/ESQ/ESQ501W.html#tab2" style="height: 29px;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="27" fill="currentColor"
-                     class="bi bi-info-circle" viewBox="0 0 16 16">
+                     class="bi bi-info-circle" viewBox="0 0 16 16" style="padding-bottom: 50%;">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                     <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
                 </svg>
-                <span class="glyphicon glyphicon-info-sign"></span>
+                <span class="glyphicon glyphicon-info-sign" ></span>
             </a>
         </div>
 
@@ -324,7 +324,7 @@
     import {
         ref,
         reactive,
-        onMounted
+        // onMounted
     } from 'vue';
 
     import imageCode from './TestImage.vue';
@@ -334,26 +334,26 @@
     const phonen = ref();
     const testn = ref();
 
-    const cnaturer = ref('感應卡片');
+    const cnaturer = ref('輸入自然人憑證卡號和自然人憑證條碼密碼');
     const naturepin = ref();
     const naturenum = ref();
     const naturecard = ref();
     const naturepwd = ref();
 
-    const easyew = ref('感應卡片');
+    const easyew = ref('輸入卡片內碼和卡片驗證碼');
     const easynum = ref();
     const easycard = ref();
     const easyvalid = ref();
 
-    const icash = ref();
+    const icash = ref('感應卡片');
     const icashnum = ref();
 
-    const ipass = ref('感應卡片');
+    const ipass = ref('輸入卡片內碼和卡片驗證碼');
     const ipassnum = ref();
     const ipasscard = ref();
     const ipassvalid = ref();
 
-    const bankNumber = ref();
+    const bankNumber = ref('選擇銀行別');
     const creditcard = ref();
     const idcard = ref();
     const birth = ref();
@@ -372,7 +372,7 @@
 
     const invoice = ref('111年03-04月');
     const pic = ref();
-
+    const router = useRouter()
 
     function checkValue() {
         var numReg = /^[0-9]{10}$/
@@ -407,30 +407,25 @@
         if (apoption.value === '自然人憑證條碼' && cnaturer.value === '感應卡片') {
             console.log("檢查到選擇自然人憑證條碼+感應卡片")
             if (naturepin.value !== undefined && naturepin.value !== '') {
-                if (naturenum.value !== undefined && naturenum.value !== '') {
-                    if (testn.value !== undefined && testn.value !== '') {
-                        if (pic.value == data.img_code) {
-                            router.push({
-                                path: '/apresult/1',
-                                query: {
-                                    apoption: apoption.value,
-                                    cnaturer: cnaturer.value,
-                                    naturepin: naturepin.value,
-                                    naturenum: naturenum.value,
-                                    testn: testn.value,
-                                    invoice: invoice.value,
-                                    pic: pic.value
-                                }
-                            })
-                        } else {
-                            alert("圖形驗證碼錯誤!")
-                        }
+                // if (naturenum.value !== undefined && naturenum.value !== '') {
+                    if (pic.value === data.img_code) {
+                        router.push({
+                            path: '/apresult/1',
+                            query: {
+                                apoption: apoption.value,
+                                cnaturer: cnaturer.value,
+                                naturepin: naturepin.value,
+                                naturenum: naturenum.value,
+                                invoice: invoice.value,
+                                pic: pic.value
+                            }
+                        })
                     } else {
-                        alert("驗證碼不得為空!")
+                        alert("圖形驗證碼錯誤!")
                     }
-                } else {
-                    alert("自然人憑證卡號不得為空!")
-                }
+                // } else {
+                //     alert("自然人憑證卡號不得為空!")
+                // }
             } else {
                 alert("憑證PIN碼不得為空!")
             }
@@ -440,25 +435,20 @@
             console.log("檢查到選擇自然人憑證條碼+輸入自然人憑證卡號和自然人憑證條碼密碼")
             if (naturecard.value !== undefined && naturecard.value !== '') {
                 if (naturepwd.value !== undefined && naturepwd.value !== '') {
-                    if (testn.value !== undefined && testn.value !== '') {
-                        if (pic.value == data.img_code) {
-                            router.push({
-                                path: '/apresult/1',
-                                query: {
-                                    apoption: apoption.value,
-                                    cnaturer: cnaturer.value,
-                                    naturecard: naturecard.value,
-                                    naturepwd: naturepwd.value,
-                                    testn: testn.value,
-                                    invoice: invoice.value,
-                                    pic: pic.value
-                                }
-                            })
-                        } else {
-                            alert("圖形驗證碼錯誤!")
-                        }
+                    if (pic.value === data.img_code) {
+                        router.push({
+                            path: '/apresult/1',
+                            query: {
+                                apoption: apoption.value,
+                                cnaturer: cnaturer.value,
+                                naturecard: naturecard.value,
+                                naturepwd: naturepwd.value,
+                                invoice: invoice.value,
+                                pic: pic.value
+                            }
+                        })
                     } else {
-                        alert("驗證碼不得為空!")
+                        alert("圖形驗證碼錯誤!")
                     }
                 } else {
                     alert("自然人憑證條碼密碼不得為空!")
@@ -468,56 +458,46 @@
             }
         }
         // 檢核悠遊卡--感應卡片
-        if (apoption.value === '悠遊卡' && cnaturer.value === '感應卡片') {
+        if (apoption.value === '悠遊卡' && easyew.value === '感應卡片') {
             console.log("檢查到悠遊卡+感應卡片")
             // if (easynum.value !== '') {
-            if (testn.value !== undefined && testn.value !== '') {
-                if (pic.value == data.img_code) {
-                    router.push({
-                        path: '/apresult/1',
-                        query: {
-                            apoption: apoption.value,
-                            easyew: easyew.value,
-                            easynum: easynum.value,
-                            testn: testn.value,
-                            invoice: invoice.value,
-                            pic: pic.value
-                        }
-                    })
-                } else {
-                    alert("圖形驗證碼錯誤!")
-                }
+            if (pic.value === data.img_code) {
+                router.push({
+                    path: '/apresult/1',
+                    query: {
+                        apoption: apoption.value,
+                        easyew: easyew.value,
+                        easynum: easynum.value,
+                        invoice: invoice.value,
+                        pic: pic.value
+                    }
+                })
             } else {
-                alert("驗證碼不得為空!")
+                alert("圖形驗證碼錯誤!")
             }
             // } else {
             //     alert("載具隱碼不得為空!")
             // }
         }
         // 檢核悠遊卡--輸入卡片內碼和卡片驗證碼
-        if (apoption.value === '悠遊卡' && cnaturer.value === '輸入卡片內碼和卡片驗證碼') {
+        if (apoption.value === '悠遊卡' && easyew.value === '輸入卡片內碼和卡片驗證碼') {
             console.log("檢查到選擇悠遊卡+輸入卡片內碼和卡片驗證碼")
             if (easycard.value !== undefined && easycard.value !== '') {
                 if (easyvalid.value !== undefined && easyvalid.value !== '') {
-                    if (testn.value !== undefined && testn.value !== '') {
-                        if (pic.value == data.img_code) {
-                            router.push({
-                                path: '/apresult/1',
-                                query: {
-                                    apoption: apoption.value,
-                                    easyew: easyew.value,
-                                    easycard: easycard.value,
-                                    easyvalid: easyvalid.value,
-                                    testn: testn.value,
-                                    invoice: invoice.value,
-                                    pic: pic.value
-                                }
-                            })
-                        } else {
-                            alert("圖形驗證碼錯誤!")
-                        }
+                    if (pic.value === data.img_code) {
+                        router.push({
+                            path: '/apresult/1',
+                            query: {
+                                apoption: apoption.value,
+                                easyew: easyew.value,
+                                easycard: easycard.value,
+                                easyvalid: easyvalid.value,
+                                invoice: invoice.value,
+                                pic: pic.value
+                            }
+                        })
                     } else {
-                        alert("驗證碼不得為空!")
+                        alert("圖形驗證碼錯誤!")
                     }
                 } else {
                     alert("卡片驗證碼不得為空!")
@@ -526,32 +506,244 @@
                 alert("卡片內碼不得為空!")
             }
         }
+        // 檢核icash
+        if (apoption.value === 'icash') {
+            console.log("檢查到icash")
+            // if (icashnum.value !== '') {
+            if (pic.value === data.img_code) {
+                router.push({
+                    path: '/apresult/1',
+                    query: {
+                        apoption: apoption.value,
+                        icash: icash.value,
+                        icashnum: icashnum.value,
+                        invoice: invoice.value,
+                        pic: pic.value
+                    }
+                })
+            } else {
+                alert("圖形驗證碼錯誤!")
+            }
+            // } else {
+            //     alert("載具隱碼不得為空!")
+            // }
+        }
+        // 檢核一卡通--感應卡片
+        if (apoption.value === '一卡通' && ipass.value === '感應卡片') {
+            console.log("檢查到一卡通+感應卡片")
+            // if (ipassnum.value !== '') {
+            if (pic.value === data.img_code) {
+                router.push({
+                    path: '/apresult/1',
+                    query: {
+                        apoption: apoption.value,
+                        ipass: ipass.value,
+                        ipassnum: ipassnum.value,
+                        invoice: invoice.value,
+                        pic: pic.value
+                    }
+                })
+            } else {
+                alert("圖形驗證碼錯誤!")
+            }
+            // } else {
+            //     alert("載具隱碼不得為空!")
+            // }
+        }
+        // 檢核一卡通--輸入卡片內碼和卡片驗證碼
+        if (apoption.value === '一卡通' && ipass.value === '輸入卡片內碼和卡片驗證碼') {
+            console.log("檢查到選擇一卡通+輸入卡片內碼和卡片驗證碼")
+            if (ipasscard.value !== undefined && easycard.value !== '') {
+                if (ipassvalid.value !== undefined && easyvalid.value !== '') {
+                    if (pic.value === data.img_code) {
+                        router.push({
+                            path: '/apresult/1',
+                            query: {
+                                apoption: apoption.value,
+                                ipass: ipass.value,
+                                ipasscard: ipasscard.value,
+                                ipassvalid: ipassvalid.value,
+                                invoice: invoice.value,
+                                pic: pic.value
+                            }
+                        })
+                    } else {
+                        alert("圖形驗證碼錯誤!")
+                    }
+                } else {
+                    alert("卡片驗證碼不得為空!")
+                }
+            } else {
+                alert("卡片內碼不得為空!")
+            }
+        }
+        var numRegc = /^[0-9]{4}$/
+        var checkNumc = new RegExp(numRegc)
+        // var numRegb = /^([0-9]{1,2})([0-9]{1,2})$/
+        // var checkNumb = new RegExp(numRegb)
 
-        //2022/06/02 只改到悠遊卡...=A=ˇ
-
-
+        // 檢核信用卡/簽帳金融卡
+        if (apoption.value === '信用卡/簽帳金融卡') {
+            console.log("檢查到選擇信用卡/簽帳金融卡")
+            if (bankNumber.value !== '選擇銀行別') {
+                if (creditcard.value !== undefined && creditcard.value !== '') {
+                    if (idcard.value !== undefined && idcard.value !== '' && checkNumc.test(idcard.value)) {
+                        if (birth.value !== undefined && birth.value !== '' && checkNumc.test(birth.value)) {
+                            if (pic.value === data.img_code) {
+                                router.push({
+                                    path: '/apresult/1',
+                                    query: {
+                                        apoption: apoption.value,
+                                        bankNumber: bankNumber.value,
+                                        creditcard: creditcard.value,
+                                        idcard: idcard.value,
+                                        birth: birth.value,
+                                        invoice: invoice.value,
+                                        pic: pic.value
+                                    }
+                                })
+                            } else {
+                                alert("圖形驗證碼錯誤!")
+                            }
+                        } else {
+                            alert("生日4碼不得為空且須為4位數字!")
+                        }
+                    } else {
+                        alert("身分證末4碼不得為空且須為4位數字!")
+                    }
+                } else {
+                    alert("卡號不得為空!")
+                }
+            } else {
+                alert("請選擇銀行別!")
+            }
+        }
+        // 檢核註銷載具-悠遊卡--輸入卡片內碼和卡片驗證碼
+        if (apoption.value === '註銷載具-悠遊卡') {
+            console.log("檢查到選擇註銷載具-悠遊卡")
+            if (ceasycard.value !== undefined && ceasycard.value !== '') {
+                if (ceasyvalid.value !== undefined && ceasyvalid.value !== '') {
+                    if (pic.value === data.img_code) {
+                        router.push({
+                            path: '/apresult/1',
+                            query: {
+                                apoption: apoption.value,
+                                ceasycard: ceasycard.value,
+                                ceasyvalid: ceasyvalid.value,
+                                invoice: invoice.value,
+                                pic: pic.value
+                            }
+                        })
+                    } else {
+                        alert("圖形驗證碼錯誤!")
+                    }
+                } else {
+                    alert("卡片驗證碼不得為空!")
+                }
+            } else {
+                alert("卡片內碼不得為空!")
+            }
+        }
+        // 檢核註銷載具-iCash--輸入卡片內碼和卡片驗證碼
+        if (apoption.value === '註銷載具-iCash') {
+            console.log("檢查到選擇註銷載具-iCash")
+            if (cicashcard.value !== undefined && cicashcard.value !== '') {
+                if (cicashvalid.value !== undefined && cicashvalid.value !== '') {
+                    if (pic.value === data.img_code) {
+                        router.push({
+                            path: '/apresult/1',
+                            query: {
+                                apoption: apoption.value,
+                                cicashcard: cicashcard.value,
+                                cicashvalid: cicashvalid.value,
+                                invoice: invoice.value,
+                                pic: pic.value
+                            }
+                        })
+                    } else {
+                        alert("圖形驗證碼錯誤!")
+                    }
+                } else {
+                    alert("卡片驗證碼不得為空!")
+                }
+            } else {
+                alert("卡片內碼不得為空!")
+            }
+        }
+        // 檢核註銷載具-一卡通--輸入卡片內碼和卡片驗證碼
+        if (apoption.value === '註銷載具-一卡通') {
+            console.log("檢查到選擇註銷載具-一卡通")
+            if (cipasscard.value !== undefined && cipasscard.value !== '') {
+                if (cipassvalid.value !== undefined && cipassvalid.value !== '') {
+                    if (pic.value === data.img_code) {
+                        router.push({
+                            path: '/apresult/1',
+                            query: {
+                                apoption: apoption.value,
+                                cipasscard: cipasscard.value,
+                                cipassvalid: cipassvalid.value,
+                                invoice: invoice.value,
+                                pic: pic.value
+                            }
+                        })
+                    } else {
+                        alert("圖形驗證碼錯誤!")
+                    }
+                } else {
+                    alert("卡片驗證碼不得為空!")
+                }
+            } else {
+                alert("卡片內碼不得為空!")
+            }
+        }
+        // 檢核註銷載具-信用卡/簽帳金融卡--輸入卡號和卡片驗證碼
+        if (apoption.value === '註銷載具-信用卡/簽帳金融卡') {
+            console.log("檢查到選擇註銷載具-信用卡/簽帳金融卡")
+            if (ccredit.value !== undefined && ccredit.value !== '') {
+                if (ccreditvalid.value !== undefined && ccreditvalid.value !== '') {
+                    if (pic.value === data.img_code) {
+                        router.push({
+                            path: '/apresult/1',
+                            query: {
+                                apoption: apoption.value,
+                                ccredit: ccredit.value,
+                                ccreditvalid: ccreditvalid.value,
+                                invoice: invoice.value,
+                                pic: pic.value
+                            }
+                        })
+                    } else {
+                        alert("圖形驗證碼錯誤!")
+                    }
+                } else {
+                    alert("卡片驗證碼不得為空!")
+                }
+            } else {
+                alert("卡號不得為空!")
+            }
+        }
     }
 
     function empty() {
         this.apoption = '手機條碼';
         this.phonen = '';
         this.testn = '';
-        this.cnaturer = '';
+        this.cnaturer = '輸入自然人憑證卡號和自然人憑證條碼密碼';
         this.naturepin = '';
         this.naturenum = '';
         this.naturecard = '';
         this.naturepwd = '';
-        this.easyew = '';
+        this.easyew = '輸入卡片內碼和卡片驗證碼';
         this.easynum = '';
         this.easycard = '';
         this.easyvalid = '';
-        this.icash = '';
+        this.icash = ref('感應卡片');
         this.icashnum = '';
-        this.ipass = '';
+        this.ipass = '輸入卡片內碼和卡片驗證碼';
         this.ipassnum = '';
         this.ipasscard = '';
         this.ipassvalid = '';
-        this.bankNumber = '';
+        this.bankNumber = '選擇銀行別';
         this.creditcard = '';
         this.idcard = '';
         this.birth = '';
@@ -566,13 +758,6 @@
 
         this.invoice = '111年03-04月';
         this.pic = '';
-
-
-
-
-
-
-
 
 
     }
@@ -590,17 +775,12 @@
     // 接收组件返回加密後驗證碼值
     const backImageCode = (code) => {
         data.img_code = code
-        console.log('data', data.img_code)
+        console.log('圖形驗證碼:', data.img_code)
     }
 
-    const router = useRouter()
-
-
-    onMounted(() => {
-        console.log(data.img_code)
-        console.log(phonen)
-        console.log(phonen.value == undefined)
-    })
+    // onMounted(() => {
+    //     console.log(data.img_code)
+    // })
 
 </script>
 <style scoped>
