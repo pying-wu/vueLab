@@ -195,6 +195,22 @@ const routes = [{
       title: '載具(卡片)專區'
     },
     component: () => import('../views/apconsumer/ApResult3.vue')
+  },
+  {
+    path: '/aptest',
+    name: '測試頁面',
+    meta: {
+      title: '載具功能測試專區'
+    },
+    component: () => import('../views/test.vue')
+  },
+  {
+    path: '/table',
+    name: '測試table',
+    meta: {
+      title: '載具功能測試專區'
+    },
+    component: () => import('../views/tableSort.vue')
   }
 
 ]
