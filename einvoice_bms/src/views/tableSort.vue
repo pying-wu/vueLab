@@ -30,7 +30,9 @@
 
     const app = createApp({
         // data:{
-            data() {[
+        data: function() {
+            return {
+            data: [
                 {
                     name: "巧呼呼蘇打水",
                     price: 30,
@@ -56,10 +58,11 @@
                     price: 120,
                     expiryDate: 200
                 }
-            ]},
+            ]
+            }
+        },
         sortType:  "price",
         isReverse: false
-
     });
       app.mount('#app')
 
