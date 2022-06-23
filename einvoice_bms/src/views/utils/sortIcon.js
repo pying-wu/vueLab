@@ -5,7 +5,7 @@ export function sort(type, users) {
         var vm = users;
         let sorter = vm.sortType;
 
-        return vm.value.sort(function (a, b) {
+        return vm.sort(function (a, b) {
             if (vm.isReverse) {
                 if (a[sorter] > b[sorter]) {
                     return 1;

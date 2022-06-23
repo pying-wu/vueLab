@@ -31,8 +31,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="(user, index) in users" :key="index">
-                <td>{{user.firstName}} {{user.lastName}}</td>
+            <tr v-for="(user, index) in sortData" :key="index">
+                <td>{{user.name}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.role}}</td>
             </tr>
@@ -41,7 +41,7 @@
     </div>
 </template>
 <script setup>
-    import { ref,  } from "vue";
+    import {reactive, ref,} from "vue";
     import { sort } from './utils/sortIcon.js';
 
             let changeName = ref(false);
@@ -49,16 +49,15 @@
             let changeRole = ref(false);
             let currentIcon = ref("");
 
-    const users  = ref( [
-        {firstName: 'Frank', lastName: 'Murphy', email: 'frank.murphy@test.com', role: 'User'},
-        {firstName: 'Vic', lastName: 'Reynolds', email: 'vic.reynolds@test.com', role: 'Admin'},
-        {firstName: 'Gina', lastName: 'Jabowski', email: 'gina.jabowski@test.com', role: 'Admin'},
-        {firstName: 'Jessi', lastName: 'Glaser', email: 'jessi.glaser@test.com', role: 'User'},
-        {firstName: 'Jay', lastName: 'Bilzerian', email: 'jay.bilzerian@test.com', role: 'User'}
+    const users = reactive( [
+        { name: 'Frank Murphy', email: 'frank.murphy@test.com', role: 'User' },
+        { name: 'Vic Reynolds', email: 'vic.reynolds@test.com', role: 'Admin' },
+        { name: 'Gina Jabowski', email: 'gina.jabowski@test.com', role: 'Admin' },
+        { name: 'Jessi Glaser', email: 'jessi.glaser@test.com', role: 'User' },
+        { name: 'Jay Bilzerian', email: 'jay.bilzerian@test.com', role: 'User' }
     ])
 
     // console.log(users)
-    console.log(users.value)
     console.log(JSON.stringify(users))
 
     let { sortData } = sort("", users);
@@ -66,11 +65,11 @@
     console.log(sortData.value)
 
     function changeType(type) {
-        changeName.value = type === "name";
-        changeEmail.value = type === "email";
-        changeRole.value = type === "role";
+        changeName.value = type == "name" ? true : false;
+        changeEmail.value = type == "email" ? true : false;
+        changeRole.value = type == "role" ? true : false;
 
-        let { asc } = sort(type, sortData);
+        let { asc } = sort(type, users);
         if (asc.value) {
             console.log("箭頭向上")
             currentIcon.value = "sort-up";
@@ -79,6 +78,7 @@
             currentIcon.value = "sort-down";
         }
     }
+
 
 
 </script>
