@@ -31,7 +31,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="(user, index) in sortData" :key="index">
+            <tr v-for="(user, index) in users" :key="index">
                 <td>{{user.firstName}} {{user.lastName}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.role}}</td>
@@ -41,16 +41,13 @@
     </div>
 </template>
 <script setup>
+    import { ref,  } from "vue";
     import { sort } from './utils/sortIcon.js';
 
             let changeName = ref(false);
             let changeEmail = ref(false);
             let changeRole = ref(false);
             let currentIcon = ref("");
-        // let sortData = ref([])
-
-
-    import { ref, onMounted } from "vue";
 
     const users  = ref( [
         {firstName: 'Frank', lastName: 'Murphy', email: 'frank.murphy@test.com', role: 'User'},
@@ -59,12 +56,14 @@
         {firstName: 'Jessi', lastName: 'Glaser', email: 'jessi.glaser@test.com', role: 'User'},
         {firstName: 'Jay', lastName: 'Bilzerian', email: 'jay.bilzerian@test.com', role: 'User'}
     ])
-    onMounted(() => {
-        users
-    })
+
+    // console.log(users)
+    console.log(users.value)
+    console.log(JSON.stringify(users))
 
     let { sortData } = sort("", users);
     console.log(sortData)
+    console.log(sortData.value)
 
     function changeType(type) {
         changeName.value = type === "name";
@@ -83,3 +82,8 @@
 
 
 </script>
+<style>
+    th {
+        cursor: pointer;
+    }
+</style>
