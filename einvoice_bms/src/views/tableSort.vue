@@ -5,26 +5,26 @@
             <thead>
             <tr>
                 <th @click="changeType('name')">Name
-                    <span v-if="name">
-                      <font-awesome-icon :icon="currentIcon" />
+                    <span v-if="changeName">
+                      <font-awesome-icon :icon="currentIcon"></font-awesome-icon>
                     </span>
-                    <span v-if="!name">
+                    <span v-if="!changeName">
                       <font-awesome-icon icon="sort" />
                     </span>
                 </th>
                 <th @click="changeType('email')">Email
-                <span v-if="email">
-                      <font-awesome-icon :icon="currentIcon" />
+                    <span v-if="changeEmail">
+                      <font-awesome-icon :icon="currentIcon"></font-awesome-icon>
                     </span>
-                <span v-if="!email">
+                    <span v-if="!changeEmail">
                       <font-awesome-icon icon="sort" />
                     </span>
                 </th>
                 <th @click="changeType('role')">Role
-                <span v-if="role">
-                      <font-awesome-icon :icon="currentIcon" />
+                    <span v-if="changeRole">
+                      <font-awesome-icon :icon="currentIcon"></font-awesome-icon>
                     </span>
-                <span v-if="!role">
+                    <span v-if="!changeRole">
                       <font-awesome-icon icon="sort" />
                     </span>
                 </th>
@@ -41,13 +41,13 @@
     </div>
 </template>
 <script setup>
-    import {reactive, ref,} from "vue";
+    import {reactive, ref} from "vue";
     import { sort } from './utils/sortIcon.js';
 
             let changeName = ref(false);
             let changeEmail = ref(false);
             let changeRole = ref(false);
-            let currentIcon = ref("");
+            let currentIcon = ref("sort");
 
     const users = reactive( [
         { name: 'Frank Murphy', email: 'frank.murphy@test.com', role: 'User' },
@@ -57,30 +57,21 @@
         { name: 'Jay Bilzerian', email: 'jay.bilzerian@test.com', role: 'User' }
     ])
 
-    // console.log(users)
-    console.log(JSON.stringify(users))
-
     let { sortData } = sort("", users);
-    console.log(sortData)
-    console.log(sortData.value)
 
     function changeType(type) {
+
         changeName.value = type == "name" ? true : false;
         changeEmail.value = type == "email" ? true : false;
         changeRole.value = type == "role" ? true : false;
 
         let { asc } = sort(type, users);
         if (asc.value) {
-            console.log("箭頭向上")
             currentIcon.value = "sort-up";
         } else {
-            console.log("箭頭向下")
             currentIcon.value = "sort-down";
         }
     }
-
-
-
 </script>
 <style>
     th {
