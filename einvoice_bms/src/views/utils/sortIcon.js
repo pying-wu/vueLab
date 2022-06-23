@@ -29,17 +29,12 @@ export function sort(type, users) {
     var vm = users;
     let asc = ref(true);
     if (vm.sortType == type) {
-        console.log("sort.js裡 vm.sortType == type")
-        console.log("一開始: " + vm.isReverse)
         vm.isReverse = !vm.isReverse;
-        console.log(vm.isReverse)
         asc.value = !vm.isReverse;
-        console.log(asc.value)
     } else {
         vm.isReverse = false;
         asc.value = !vm.isReverse;
     }
-
     vm.sortType = type;
 
     return {
