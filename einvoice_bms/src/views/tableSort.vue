@@ -1,102 +1,85 @@
 <template>
-    <div id="app">
-        <table class="table">
+    <div class="container">
+        <h3 class="p-3 text-center">TableList</h3>
+        <table class="table table-striped table-bordered">
             <thead>
             <tr>
-                <th>品名</th>
-                <th class="click" @click="changeType('price')">價格
-                    <!-- isReverse 為反轉 className -->
-                    <span class="icon" :class="{'inverse': isReverse}" v-if="sortType == 'price'">
-            <i class=" fas fa-angle-up text-success"></i>
-          </span>
+                <th @click="changeType('name')">Name
+                    <span v-if="name">
+                      <font-awesome-icon :icon="currentIcon" />
+                    </span>
+                    <span v-if="!name">
+                      <font-awesome-icon icon="sort" />
+                    </span>
                 </th>
-                <th class="click" @click="changeType('expiryDate')">到期日
-                    <span class="icon" :class="{'inverse': isReverse}" v-if="sortType == 'expiryDate'">
-            <i class=" fas fa-angle-up text-success"></i>
-          </span>
+                <th @click="changeType('email')">Email
+                <span v-if="email">
+                      <font-awesome-icon :icon="currentIcon" />
+                    </span>
+                <span v-if="!email">
+                      <font-awesome-icon icon="sort" />
+                    </span>
                 </th>
-            </tr>
-            <tr v-for="item in sortData" :key="item.price">
-                <td>{{ item.name }}</td>
-                <td>{{ item.price }}</td>
-                <td>{{ item.expiryDate }}</td>
+                <th @click="changeType('role')">Role
+                <span v-if="role">
+                      <font-awesome-icon :icon="currentIcon" />
+                    </span>
+                <span v-if="!role">
+                      <font-awesome-icon icon="sort" />
+                    </span>
+                </th>
             </tr>
             </thead>
+            <tbody>
+            <tr v-for="(user, index) in sortData" :key="index">
+                <td>{{user.firstName}} {{user.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.role}}</td>
+            </tr>
+            </tbody>
         </table>
     </div>
 </template>
-<script>
-    import {createApp, } from 'vue'
+<script setup>
+    import { sort } from './utils/sortIcon.js';
 
-    const app = createApp({
-        // data:{
-        data: function() {
-            return {
-            data: [
-                {
-                    name: "巧呼呼蘇打水",
-                    price: 30,
-                    expiryDate: 90
-                },
-                {
-                    name: "心驚膽跳羊肉飯",
-                    price: 65,
-                    expiryDate: 2
-                },
-                {
-                    name: "郭師傅武功麵包",
-                    price: 32,
-                    expiryDate: 1
-                },
-                {
-                    name: "不太會過期的新鮮牛奶",
-                    price: 75,
-                    expiryDate: 600
-                },
-                {
-                    name: "金殺 巧粒粒",
-                    price: 120,
-                    expiryDate: 200
-                }
-            ]
-            }
-        },
-        sortType:  "price",
-        isReverse: false
-    });
-      app.mount('#app')
-
-        // 請在此撰寫 JavaScript
-             function changeType(type) {
-                var vm = this;
-                if (vm.sortType === type) {
-                    vm.isReverse = !vm.isReverse;
-                } else {
-                    vm.isReverse = false;
-                }
-                vm.sortType = type;
-                sortData();
-            }
+            let changeName = ref(false);
+            let changeEmail = ref(false);
+            let changeRole = ref(false);
+            let currentIcon = ref("");
+        // let sortData = ref([])
 
 
-            function sortData() {
-                var vm = this;
-                var type = vm.sortType;
-                return vm.data.sort(function (a, b) {
-                    if (vm.isReverse) return b[type] - a[type];
-                    else return a[type] - b[type];
-                });
-            }
+    import { ref, onMounted } from "vue";
+
+    const users  = ref( [
+        {firstName: 'Frank', lastName: 'Murphy', email: 'frank.murphy@test.com', role: 'User'},
+        {firstName: 'Vic', lastName: 'Reynolds', email: 'vic.reynolds@test.com', role: 'Admin'},
+        {firstName: 'Gina', lastName: 'Jabowski', email: 'gina.jabowski@test.com', role: 'Admin'},
+        {firstName: 'Jessi', lastName: 'Glaser', email: 'jessi.glaser@test.com', role: 'User'},
+        {firstName: 'Jay', lastName: 'Bilzerian', email: 'jay.bilzerian@test.com', role: 'User'}
+    ])
+    onMounted(() => {
+        users
+    })
+
+    let { sortData } = sort("", users);
+    console.log(sortData)
+
+    function changeType(type) {
+        changeName.value = type === "name";
+        changeEmail.value = type === "email";
+        changeRole.value = type === "role";
+
+        let { asc } = sort(type, sortData);
+        if (asc.value) {
+            console.log("箭頭向上")
+            currentIcon.value = "sort-up";
+        } else {
+            console.log("箭頭向下")
+            currentIcon.value = "sort-down";
+        }
+    }
 
 
 </script>
-<style>
-    .click {
-        cursor: pointer }
-    .icon {
-        font-size: 20px;
-        color: green }
-    .isReverse i {
-        transform: rotate(180deg) }
-
-</style>
